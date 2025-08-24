@@ -30,7 +30,7 @@ router.delete('/:id', requireAuth(['merchant']), async (req, res) => {
   res.json({ success: true });
 });
 // PUBLIC LIST with filters + sorting + pagination
-router.get('/', async (req, res) => {
+router.get('/', requireAuth(['merchant', 'user']), async (req, res) => {
   const {
     q, category, subcategory, location,
     minPrice, maxPrice, sort = 'createdAt:desc',
